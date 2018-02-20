@@ -18,26 +18,22 @@ public class Game extends ApplicationAdapter {
 	private GameStateManager gameStateManager;
 	private SpriteBatch batch;
 	private Texture img;
-	
-	@Override
+
 	public void create () {
 		batch = new SpriteBatch();
 		gameStateManager = new GameStateManager();
 
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(1, 1, 0, 1);
 		gameStateManager.push(new MenuState(gameStateManager));
 	}
 
-	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	/*	wipes the screen	*/
 		gameStateManager.update(Gdx.graphics.getDeltaTime());
 		gameStateManager.render(batch);
 	}
-	
-	@Override
+
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }
